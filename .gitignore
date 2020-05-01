@@ -54,3 +54,6 @@ dkms.conf
 # User Items:
 [Bb]in
 [Oo]bj
+*.testlog
+.suo
+*.manifest
