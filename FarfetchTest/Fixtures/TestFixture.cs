@@ -40,7 +40,7 @@ namespace FarfetchSeleniumTest.Fixtures
             else
             {
                 ChromeOptions chromeOpt = new ChromeOptions();
-                Driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), chromeOpt);
+                Driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), chromeOpt.ToCapabilities(), TimeSpan.FromSeconds(120));
             }
 
             window = new WindowManagerHelper(Driver);
