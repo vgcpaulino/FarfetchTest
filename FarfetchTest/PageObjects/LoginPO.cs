@@ -14,6 +14,7 @@ namespace FarfetchSeleniumTest.PageObjects
         private readonly TestWait wait;
         private readonly InputHelper helper;
         private readonly UrlLinks links;
+        private readonly ElementHelper element;
 
         private readonly By byDivLoginTitle;
         private readonly By byInputEmail;
@@ -30,6 +31,7 @@ namespace FarfetchSeleniumTest.PageObjects
             wait = new TestWait(driver);
             helper = new InputHelper();
             links = new UrlLinks();
+            element = new ElementHelper(this.driver);
 
             byDivLoginTitle = By.Id("login");
             byInputEmail = By.Id("email-input-login");
@@ -41,14 +43,14 @@ namespace FarfetchSeleniumTest.PageObjects
             byRememberMeChkBox = By.CssSelector("label[for=RememberMe]");
         }
 
-        public IWebElement LoginTitle => driver.FindElement(byDivLoginTitle);
-        public IWebElement InputEmail => driver.FindElement(byInputEmail);
-        public IWebElement InputPassword => driver.FindElement(byInputPassword);
-        public IWebElement BtnLogin => driver.FindElement(byBtnLogin);
-        public IWebElement HintRequiredLogin => driver.FindElement(bySpanRequiredLogin);
-        public IWebElement HintRequiredPassword => driver.FindElement(bySpanRequiredPassword);
-        public IWebElement HintWrongEmailPassword => driver.FindElement(bySpanWrongEmailPassword);
-        private IWebElement RememberMeChkBox => driver.FindElement(byRememberMeChkBox);
+        public IWebElement LoginTitle => element.TryFindElement(byDivLoginTitle);
+        public IWebElement InputEmail => element.TryFindElement(byInputEmail);
+        public IWebElement InputPassword => element.TryFindElement(byInputPassword);
+        public IWebElement BtnLogin => element.TryFindElement(byBtnLogin);
+        public IWebElement HintRequiredLogin => element.TryFindElement(bySpanRequiredLogin);
+        public IWebElement HintRequiredPassword => element.TryFindElement(bySpanRequiredPassword);
+        public IWebElement HintWrongEmailPassword => element.TryFindElement(bySpanWrongEmailPassword);
+        private IWebElement RememberMeChkBox => element.TryFindElement(byRememberMeChkBox);
 
         public void GoToLoginUrl()
         {

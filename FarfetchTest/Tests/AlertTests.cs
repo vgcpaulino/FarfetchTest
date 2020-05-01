@@ -1,4 +1,5 @@
-﻿using FarfetchSeleniumTest.Fixtures;
+﻿using AngleSharp.Dom;
+using FarfetchSeleniumTest.Fixtures;
 using FarfetchSeleniumTest.Helpers;
 using OpenQA.Selenium;
 using System;
@@ -14,6 +15,7 @@ namespace FarfetchSeleniumTest.Tests
 
         private readonly IWebDriver driver;
         private ScreenshotHelper screenShot;
+        private readonly ElementHelper element;
 
         private readonly IWebElement jsAlertBtn;
         private readonly IWebElement jsConfirmBtn;
@@ -25,13 +27,14 @@ namespace FarfetchSeleniumTest.Tests
         {
             driver = fixture.Driver;
             screenShot = new ScreenshotHelper(driver);
+            element = new ElementHelper(this.driver);
 
             driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/javascript_alerts");
 
-            jsAlertBtn = driver.FindElement(By.CssSelector("button[onclick='jsAlert()']"));
-            jsConfirmBtn = driver.FindElement(By.CssSelector("button[onclick='jsConfirm()']"));
-            jsPromptBtn = driver.FindElement(By.CssSelector("button[onclick='jsPrompt()']"));
-            resultText = driver.FindElement(By.Id("result"));
+            jsAlertBtn = element.TryFindElement(By.CssSelector("button[onclick='jsAlert()']"));
+            jsConfirmBtn = element.TryFindElement(By.CssSelector("button[onclick='jsConfirm()']"));
+            jsPromptBtn = element.TryFindElement(By.CssSelector("button[onclick='jsPrompt()']"));
+            resultText = element.TryFindElement(By.Id("result"));
         }
 
         [Fact]

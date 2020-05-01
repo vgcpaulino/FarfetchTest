@@ -13,6 +13,7 @@ namespace FarfetchSeleniumTest.PageObjects
         private readonly UrlLinks links;
         private readonly StringHelper strHelper;
         private readonly ConvertHelper convert;
+        private readonly ElementHelper element;
 
         private readonly By byProductGallery;
         private readonly By byBtnSizeGuide;
@@ -35,6 +36,7 @@ namespace FarfetchSeleniumTest.PageObjects
             links = new UrlLinks();
             strHelper = new StringHelper();
             convert = new ConvertHelper();
+            element = new ElementHelper(this.driver);
 
             byProductGallery = By.CssSelector("div[data-tstid=gallery-and-productoffer");
             byBtnSizeGuide = By.CssSelector("button[data-tstid=sizeGuideButton");
@@ -51,18 +53,18 @@ namespace FarfetchSeleniumTest.PageObjects
             bySpanMeasToogleProduct = By.CssSelector("div[data-tstid=measurementToggle] > span");
         }
 
-        public IWebElement productGallery => driver.FindElement(byProductGallery);
-        public IWebElement btnSizeGuideButton => driver.FindElement(byBtnSizeGuide);
-        public IWebElement BrandName => driver.FindElement(byBrandName);
-        public IWebElement ProductDescription => driver.FindElement(byProductDescription);
-        public IWebElement ProductPrice => driver.FindElement(byPriceInfo);
-        public IWebElement Collapser => driver.FindElement(byDivProductCollapser);
-        public IWebElement SizeAndMeasBtn => driver.FindElement(bySizeAndMeas);
-        public IWebElement SizeAndFitCollapser => driver.FindElement(bySizeAndFitCollapser);
-        public IWebElement ProductCategoryBreadCrumb => driver.FindElement(byCategoryBreadCrumb);
-        public IWebElement MeasurementToogle => driver.FindElement(byMeasToogle);
-        public IWebElement ModelMeasurementDiv => driver.FindElement(byModelMeas);
-        public IWebElement ModelMeasurementTable => driver.FindElement(byModelMeasTable);
+        public IWebElement productGallery => element.TryFindElement(byProductGallery);
+        public IWebElement btnSizeGuideButton => element.TryFindElement(byBtnSizeGuide);
+        public IWebElement BrandName => element.TryFindElement(byBrandName);
+        public IWebElement ProductDescription => element.TryFindElement(byProductDescription);
+        public IWebElement ProductPrice => element.TryFindElement(byPriceInfo);
+        public IWebElement Collapser => element.TryFindElement(byDivProductCollapser);
+        public IWebElement SizeAndMeasBtn => element.TryFindElement(bySizeAndMeas);
+        public IWebElement SizeAndFitCollapser => element.TryFindElement(bySizeAndFitCollapser);
+        public IWebElement ProductCategoryBreadCrumb => element.TryFindElement(byCategoryBreadCrumb);
+        public IWebElement MeasurementToogle => element.TryFindElement(byMeasToogle);
+        public IWebElement ModelMeasurementDiv => element.TryFindElement(byModelMeas);
+        public IWebElement ModelMeasurementTable => element.TryFindElement(byModelMeasTable);
 
         public void OpenProductTShirt()
         {
@@ -87,7 +89,7 @@ namespace FarfetchSeleniumTest.PageObjects
 
         private void SelectProductMeasOption(string optionText)
         {
-            IList<IWebElement> listOfSpans = driver.FindElements(bySpanMeasToogleProduct);
+            IList<IWebElement> listOfSpans = element.TryFindElements(bySpanMeasToogleProduct);
             foreach (IWebElement ele in listOfSpans)
             {
                 string eleText = ele.GetAttribute("innerText");
@@ -103,7 +105,7 @@ namespace FarfetchSeleniumTest.PageObjects
 
         private List<string> GenerateExpectedMeasurementValues(By byElementsWithValues)
         {
-            IList<IWebElement> tableDataValueCM = driver.FindElements(byElementsWithValues);
+            IList<IWebElement> tableDataValueCM = element.TryFindElements(byElementsWithValues);
             List<string> expectedValuesInches = new List<string>();
 
             foreach (IWebElement element in tableDataValueCM)
@@ -152,7 +154,7 @@ namespace FarfetchSeleniumTest.PageObjects
             }
             
 
-            IList<IWebElement> tableDataValueInches = driver.FindElements(placeToChek);
+            IList<IWebElement> tableDataValueInches = element.TryFindElements(placeToChek);
             bool result = true;
             for (int indexEle = 0; indexEle < tableDataValueInches.Count; indexEle++)
             {

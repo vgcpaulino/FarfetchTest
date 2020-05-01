@@ -1,5 +1,6 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
+using FarfetchSeleniumTest.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SeleniumTests.Drivers;
@@ -13,6 +14,7 @@ namespace FarfetchSeleniumTest.Tests
 
         private readonly IWebDriver driver;
         private readonly DriverSetUp setup;
+        private readonly ElementHelper element;
 
         public MobileBrowserTests()
         {
@@ -26,6 +28,7 @@ namespace FarfetchSeleniumTest.Tests
 
             setup = new DriverSetUp();
             driver = new ChromeDriver(setup.ChromeDriverFolder, chromeOpt);
+            element = new ElementHelper(driver);
         }
 
         [Fact]
@@ -33,7 +36,7 @@ namespace FarfetchSeleniumTest.Tests
         {
             driver.Navigate().GoToUrl("https://www.google.com/");
 
-            IWebElement gAppsBar = driver.FindElement(By.Id("gbar"));
+            IWebElement gAppsBar = element.TryFindElement(By.Id("gbar"));
 
             Assert.True(gAppsBar.Displayed);
         }

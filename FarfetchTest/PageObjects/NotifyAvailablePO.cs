@@ -11,6 +11,7 @@ namespace FarfetchSeleniumTest.PageObjects
 
         private readonly IWebDriver driver;
         private readonly TestWait wait;
+        private readonly ElementHelper element;
 
         private readonly By byForm;
         private readonly By byEmailInput;
@@ -22,6 +23,7 @@ namespace FarfetchSeleniumTest.PageObjects
         {
             this.driver = driver;
             wait = new TestWait(driver);
+            element = new ElementHelper(this.driver);
 
             byForm = By.CssSelector("form[data-tstid=formToNotify]");
             byEmailInput = By.CssSelector("input[data-tstid=email]");
@@ -30,11 +32,11 @@ namespace FarfetchSeleniumTest.PageObjects
             bySubmitBtn = By.CssSelector("button[data-tstid=submit]");
         }
 
-        public IWebElement NotifyAvailableForm => driver.FindElement(byForm);
-        public IWebElement EmailInput => driver.FindElement(byEmailInput);
-        public IWebElement InvalidEmail => driver.FindElement(byInvalidEmail);
-        public IWebElement SizeDiv => driver.FindElement(bySizeDiv);
-        public IWebElement SubmitBtn => driver.FindElement(bySubmitBtn);
+        public IWebElement NotifyAvailableForm => element.TryFindElement(byForm);
+        public IWebElement EmailInput => element.TryFindElement(byEmailInput);
+        public IWebElement InvalidEmail => element.TryFindElement(byInvalidEmail);
+        public IWebElement SizeDiv => element.TryFindElement(bySizeDiv);
+        public IWebElement SubmitBtn => element.TryFindElement(bySubmitBtn);
 
         public bool CheckNotifyAvailableFormVisivble()
         {

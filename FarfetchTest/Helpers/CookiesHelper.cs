@@ -36,6 +36,11 @@ namespace FarfetchSeleniumTest.Helpers
             driver.Manage().Cookies.DeleteCookieNamed(cookieName);
         }
 
+        public void DeleteAllCookies()
+        {
+            driver.Manage().Cookies.DeleteAllCookies();
+        }
+
         public List<string> GetListOfCookies()
         {
             ReadOnlyCollection<Cookie> allCookies = driver.Manage().Cookies.AllCookies;
