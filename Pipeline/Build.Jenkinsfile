@@ -17,7 +17,7 @@ pipeline {
         stage ('Git Checkout') {
             steps {
                 dir ("${WORKSPACE}") {
-                    git credentialsId: 'Git', url: 'https://github.com/vgcpaulino/FarfetchTest'
+                    git branch: 'RefactorFindElementMethod', credentialsId: 'Git', url: 'https://github.com/vgcpaulino/FarfetchTest'
                 }
                 
                 //powershell label: '', script: 'Copy-Item -Path "C:\\Program Files (x86)\\Jenkins\\workspace\\Test\\*" -Destination "C:\\Work" -Recurse'
