@@ -1,4 +1,5 @@
 ﻿using FarfetchSeleniumTest.Helpers;
+using MongoDB.Bson.Serialization.Serializers;
 using OpenQA.Selenium;
 
 namespace FarfetchSeleniumTest.PageObjects
@@ -8,6 +9,7 @@ namespace FarfetchSeleniumTest.PageObjects
 
         private readonly IWebDriver driver;
         private readonly UrlLinks links;
+        private readonly ElementHelper element;
 
         private readonly By byProductCardList;
         private readonly By byHeaderTitle;
@@ -17,13 +19,14 @@ namespace FarfetchSeleniumTest.PageObjects
         {
             this.driver = driver;
             links = new UrlLinks();
+            element = new ElementHelper(this.driver);
 
             byProductCardList = By.CssSelector("ul[data-test=product-card-list");
             byHeaderTitle = By.CssSelector("h1[data-test=header-title");
         }
 
-        public IWebElement ProductCardList => driver.FindElement(byProductCardList);
-        public IWebElement HeaderTitle => driver.FindElement(byHeaderTitle);
+        public IWebElement ProductCardList => element.TryFindElement(byProductCardList);
+        public IWebElement HeaderTitle => element.TryFindElement(byHeaderTitle);
 
         public bool MenClothingIsOpened()
         {

@@ -19,6 +19,7 @@ namespace FarfetchSeleniumTest.PageObjects
         private readonly StringHelper strHelper;
         private readonly ConvertHelper convertHelper;
         private readonly JavaScriptHelper executeJScript;
+        private readonly ElementHelper element;
        
         private readonly By bySizeGuideContent;
         private readonly By byChartTable;
@@ -41,14 +42,15 @@ namespace FarfetchSeleniumTest.PageObjects
         public SizeGuidePO (IWebDriver driver)
         {
             this.driver = driver;
-            wait = new TestWait(driver);
-            actions = new ActionsHelper(driver);
+            wait = new TestWait(this.driver);
+            actions = new ActionsHelper(this.driver);
             selectHelper = new SelectHelper();
             listHelper = new ListHelper();
             tableHelper = new TableHelper();
             strHelper = new StringHelper();
             convertHelper = new ConvertHelper();
-            executeJScript = new JavaScriptHelper(driver);
+            executeJScript = new JavaScriptHelper(this.driver);
+            element = new ElementHelper(this.driver);
 
             bySizeGuideContent = By.Id("sizeGuideContent");
             byChartTable = By.CssSelector("table[data-tstid=charttable");
@@ -69,23 +71,23 @@ namespace FarfetchSeleniumTest.PageObjects
             byDiffPriceWhyInfo = By.CssSelector("button[data-tstid=findOutWhy]+div>p");
         }
 
-        public IWebElement SizeGuideContent => driver.FindElement(bySizeGuideContent);
-        public IWebElement ChartTable => driver.FindElement(byChartTable);
-        public IWebElement SizeGuideDropdown => driver.FindElement(bySizeGuideDropdown);
-        public IWebElement SizeGuideDropdownSelect => driver.FindElement(bySizeGuideDropdownSelect);
-        public IWebElement BrandName => driver.FindElement(byBrandName);
-        public IWebElement ProductDescription => driver.FindElement(byProductDescription);
-        public IWebElement SizeTable => driver.FindElement(bySizeTable);
-        public IWebElement OutOfStockDiv => driver.FindElement(byOutOfStockDiv);
-        public IWebElement OutOfStockText => driver.FindElement(byOutOfStockText);
-        public IWebElement OutOfStockNotifyAvailable => driver.FindElement(byOutOfStockNotifyAvailable);
-        public IWebElement AddToBagRow => driver.FindElement(byAddToBagRow);
-        public IWebElement AddToBagPrice => driver.FindElement(byAddToBagPrice);
-        public IWebElement AddToBagButton => driver.FindElement(byAddToBagButton);
-        public IWebElement DivDifferentPrices => driver.FindElement(byDivDiffPrices);
-        public IWebElement DifferentPriceText => driver.FindElement(byDiffPriceSpan);
-        public IWebElement DifferentPriceWhyButton => driver.FindElement(byDiffPriceWhy);
-        public IWebElement DifferentPriceWhyInfo => driver.FindElement(byDiffPriceWhyInfo);
+        public IWebElement SizeGuideContent => element.TryFindElement(bySizeGuideContent);
+        public IWebElement ChartTable => element.TryFindElement(byChartTable);
+        public IWebElement SizeGuideDropdown => element.TryFindElement(bySizeGuideDropdown);
+        public IWebElement SizeGuideDropdownSelect => element.TryFindElement(bySizeGuideDropdownSelect);
+        public IWebElement BrandName => element.TryFindElement(byBrandName);
+        public IWebElement ProductDescription => element.TryFindElement(byProductDescription);
+        public IWebElement SizeTable => element.TryFindElement(bySizeTable);
+        public IWebElement OutOfStockDiv => element.TryFindElement(byOutOfStockDiv);
+        public IWebElement OutOfStockText => element.TryFindElement(byOutOfStockText);
+        public IWebElement OutOfStockNotifyAvailable => element.TryFindElement(byOutOfStockNotifyAvailable);
+        public IWebElement AddToBagRow => element.TryFindElement(byAddToBagRow);
+        public IWebElement AddToBagPrice => element.TryFindElement(byAddToBagPrice);
+        public IWebElement AddToBagButton => element.TryFindElement(byAddToBagButton);
+        public IWebElement DivDifferentPrices => element.TryFindElement(byDivDiffPrices);
+        public IWebElement DifferentPriceText => element.TryFindElement(byDiffPriceSpan);
+        public IWebElement DifferentPriceWhyButton => element.TryFindElement(byDiffPriceWhy);
+        public IWebElement DifferentPriceWhyInfo => element.TryFindElement(byDiffPriceWhyInfo);
 
         public void WaitSizeGuideDiv()
         {

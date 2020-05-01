@@ -13,6 +13,7 @@ namespace FarfetchSeleniumTest.PageObjects
         private readonly TestWait wait;
         private readonly UrlLinks links;
         private readonly CookiesHelper cookie;
+        private readonly ElementHelper element;
 
         private readonly By byIconLogin;
         public readonly By byUserDetailName;
@@ -32,6 +33,7 @@ namespace FarfetchSeleniumTest.PageObjects
             wait = new TestWait(driver);
             links = new UrlLinks();
             cookie = new CookiesHelper(driver);
+            element = new ElementHelper(driver);
 
             byIconLogin = By.ClassName("icon-user");
             byUserDetailName = By.Id("ff-details-account");
@@ -47,17 +49,17 @@ namespace FarfetchSeleniumTest.PageObjects
         }
 
         
-        public IWebElement LoginIcon => driver.FindElement(byIconLogin);
-        public IWebElement UserDetailName => driver.FindElement(byUserDetailName);
-        public IWebElement UserName => driver.FindElement(byUserName);
-        public IWebElement GreetingMessage => driver.FindElement(byGreetingMessage);
-        public IWebElement BtnExit => driver.FindElement(byBtnExit);
-        public IWebElement BtnLogin => driver.FindElement(byBtnLogin);
-        public IWebElement DetailsDrawer => driver.FindElement(byDetailsDrawer);
-        public IWebElement GenderMaleFilter => driver.FindElement(byGenderMaleFilter);
-        public IWebElement GenderMaleClothingFilter => driver.FindElement(byGenderMaleClothingFilter);
-        public IWebElement NewsLetterCloseBtn => driver.FindElement(byNewsLetterCloseBtn);
-        public IWebElement SideMenu => driver.FindElement(bySideMenu);
+        public IWebElement LoginIcon => element.TryFindElement(byIconLogin);
+        public IWebElement UserDetailName => element.TryFindElement(byUserDetailName);
+        public IWebElement UserName => element.TryFindElement(byUserName);
+        public IWebElement GreetingMessage => element.TryFindElement(byGreetingMessage);
+        public IWebElement BtnExit => element.TryFindElement(byBtnExit);
+        public IWebElement BtnLogin => element.TryFindElement(byBtnLogin);
+        public IWebElement DetailsDrawer => element.TryFindElement(byDetailsDrawer);
+        public IWebElement GenderMaleFilter => element.TryFindElement(byGenderMaleFilter);
+        public IWebElement GenderMaleClothingFilter => element.TryFindElement(byGenderMaleClothingFilter);
+        public IWebElement NewsLetterCloseBtn => element.TryFindElement(byNewsLetterCloseBtn);
+        public IWebElement SideMenu => element.TryFindElement(bySideMenu);
 
         public void OpenHomePage()
         {
