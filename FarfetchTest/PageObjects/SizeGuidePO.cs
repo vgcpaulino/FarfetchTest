@@ -129,8 +129,9 @@ namespace FarfetchSeleniumTest.PageObjects
         }
 
         public void WaitNormalPriceText()
-        { 
-            wait.WaitTextDifferentFrom(10, AddToBagPrice, AddToBagPrice.Text);
+        {
+            wait.WaitElementVisible(10, byAddToBagRow);
+            wait.WaitTextDifferentFrom(10, AddToBagPrice, "");
         }
 
         private IList<IWebElement> GetDifferentPricesElements()
