@@ -59,6 +59,7 @@ namespace FarfetchSeleniumTest.PageObjects
 
         public bool PageIsOpened()
         {
+            wait.WaitElementExists(10, byDivLoginTitle);
             return (links.LoginUrl == driver.Url) && LoginTitle.Displayed;
         }
 

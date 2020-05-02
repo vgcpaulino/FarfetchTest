@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using FarfetchSeleniumTest.Helpers;
 using Xunit.Abstractions;
+using System.Threading;
 
 namespace FarfetchSeleniumTest.PageObjects
 {
@@ -26,6 +27,7 @@ namespace FarfetchSeleniumTest.PageObjects
         private readonly By byGenderMaleClothingFilter;
         private readonly By byNewsLetterCloseBtn;
         private readonly By bySideMenu;
+        private readonly By byHeader;
 
         public HomePO(IWebDriver driver)
         {
@@ -46,6 +48,7 @@ namespace FarfetchSeleniumTest.PageObjects
             byGenderMaleClothingFilter = By.XPath("//a[@href='/br/shopping/men/clothing-2/items.aspx']");
             byNewsLetterCloseBtn = By.CssSelector("button[data-test=Go_NewsletterModalCloseButton]");
             bySideMenu = By.CssSelector("a[data-test='ff-sidenav']");
+            byHeader = By.CssSelector("header[data-test='slice-header']");
         }
 
         
@@ -60,6 +63,7 @@ namespace FarfetchSeleniumTest.PageObjects
         public IWebElement GenderMaleClothingFilter => element.TryFindElement(byGenderMaleClothingFilter);
         public IWebElement NewsLetterCloseBtn => element.TryFindElement(byNewsLetterCloseBtn);
         public IWebElement SideMenu => element.TryFindElement(bySideMenu);
+        public IWebElement Header => element.TryFindElement(byHeader);
 
         public void OpenHomePage()
         {
@@ -72,6 +76,8 @@ namespace FarfetchSeleniumTest.PageObjects
                 new Cookie("smCloseBounce", "true", "www.farfetch.com", "/", time)
             };
             cookie.AddCookies(listOfCookies);
+
+            WaitHomePage();
         }
         
         private void WaitDetailDrawer()
@@ -107,6 +113,12 @@ namespace FarfetchSeleniumTest.PageObjects
         {
             wait.WaitElementExists(10, byNewsLetterCloseBtn);
             NewsLetterCloseBtn.Click();
+        }
+
+        private void WaitHomePage()
+        {
+            wait.WaitElementExists(20, byIconLogin);
+            wait.WaitElementVisible(20, byIconLogin);
         }
     }
 }
