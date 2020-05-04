@@ -57,3 +57,4 @@ dkms.conf
 *.testlog
 .suo
 *.manifest
+*.v2
