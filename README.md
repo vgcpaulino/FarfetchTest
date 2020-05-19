@@ -1,4 +1,4 @@
-# FarfetchTest
+# SeleniumDotNetTest
 
 ## Description:
 Project created for the purpose of testing Selenium using C# and .Net Core. The project is prepared to run in Docker containers using the Selenium images (Selenium Grid) and Jenkins (manual configuration);
