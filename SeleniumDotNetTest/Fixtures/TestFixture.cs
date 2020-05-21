@@ -15,9 +15,12 @@ namespace SeleniumDotNetTest.Fixtures
         private DriverSetUp driverSetUp;
         private WindowManagerHelper window;
         private EnvironmentHelper env;
+        private readonly Paths paths;
 
         public TestFixture()
         {
+            paths = new Paths();
+
             CreateWebDriver();
         }
 
@@ -26,20 +29,21 @@ namespace SeleniumDotNetTest.Fixtures
             driverSetUp = new DriverSetUp();
             driverSetUp.SetUpDrivers();
 
-            //ChromeOptions options = new ChromeOptions();
-            //options.AddArguments("--whitelisted-ips=''");
-            //Driver = new ChromeDriver(driverSetUp.ChromeDriverFolder, options);
+            ChromeOptions chromeOpt = new ChromeOptions();
+            //opchromeOpttions.AddArguments("--whitelisted-ips=''");
+            string downloadFolder = paths.solutionRuntimeFilesPath;
+            chromeOpt.AddUserProfilePreference("download.default_directory", downloadFolder); // Set another directory when downloading a file;
+            //chromeOpt.AddUserProfilePreference("download.prompt_for_download", true); // Ask directory when downloading a file;
 
             // The environment variable it's created through the Jenkinsfile
             env = new EnvironmentHelper();
             string executingCI = env.GetEnvVariableValue("CI_EXECUTION");
             if (executingCI == "" || executingCI == null)
             {
-                Driver = new ChromeDriver(driverSetUp.ChromeDriverFolder);
+                Driver = new ChromeDriver(driverSetUp.ChromeDriverFolder, chromeOpt);
             }
             else
             {
-                ChromeOptions chromeOpt = new ChromeOptions();
                 Driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), chromeOpt.ToCapabilities(), TimeSpan.FromSeconds(120));
             }
 

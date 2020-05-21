@@ -58,3 +58,4 @@ dkms.conf
 .suo
 *.manifest
 *.v2
+SeleniumDotNetTest/SeleniumDotNetTest.csproj.user

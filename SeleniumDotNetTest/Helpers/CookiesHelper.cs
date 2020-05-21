@@ -31,6 +31,12 @@ namespace SeleniumDotNetTest.Helpers
             }
         }
 
+        public void CreateCookie(string name, string value)
+        {
+            Cookie ck = new Cookie(name, value);
+            driver.Manage().Cookies.AddCookie(ck);
+        }
+
         public void DeleteCookieByName(string cookieName)
         {
             driver.Manage().Cookies.DeleteCookieNamed(cookieName);
