@@ -40,7 +40,7 @@ namespace SeleniumDotNetTest.Helpers
                 string currentPageTitle = driver.SwitchTo().Window(currentWindowHandle).Title;
                 if (currentPageTitle.Contains(pageTitle))
                 {
-                    driver.SwitchTo().Window(currentWindowHandle);
+                    break;
                 }
             }
         }

@@ -9,6 +9,7 @@ namespace SeleniumDotNetTest.Tests.TheInternet
         public static string AlertUrl = $"{BaseUrl}/javascript_alerts";
         public static string FileUpload = $"{BaseUrl}/upload";
         public static string FileDownload = $"{BaseUrl}/download";
+        public static string BrowserTabs = $"{BaseUrl}/windows";
 
     }
 
