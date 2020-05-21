@@ -4,7 +4,7 @@ using Xunit;
 using SeleniumDotNetTest.Fixtures;
 using SeleniumDotNetTest.Helpers;
 
-namespace SeleniumDotNetTest.Tests
+namespace SeleniumDotNetTest.Tests.Others
 {
     
     //[Collection("Chrome Driver")]

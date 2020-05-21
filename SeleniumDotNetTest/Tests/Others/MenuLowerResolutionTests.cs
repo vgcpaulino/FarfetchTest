@@ -2,14 +2,10 @@
 using SeleniumDotNetTest.Helpers;
 using SeleniumDotNetTest.PageObjects;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace SeleniumDotNetTest.Tests
+namespace SeleniumDotNetTest.Tests.Others
 {
     public class MenuLowerResolutionTests : IClassFixture<TestFixture>
     {

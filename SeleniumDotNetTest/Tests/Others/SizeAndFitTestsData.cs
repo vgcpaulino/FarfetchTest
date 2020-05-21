@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SeleniumDotNetTest.Tests
+namespace SeleniumDotNetTest.Tests.Others
 {
     public class SizeAndFitTestsData
     {

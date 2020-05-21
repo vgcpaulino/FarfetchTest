@@ -4,7 +4,7 @@ using SeleniumDotNetTest.PageObjects;
 using OpenQA.Selenium;
 using Xunit;
 
-namespace SeleniumDotNetTest.Tests
+namespace SeleniumDotNetTest.Tests.Others
 {
     
     //[Collection("Chrome Driver")]

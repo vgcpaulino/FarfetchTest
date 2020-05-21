@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using Xunit;
 
-namespace SeleniumDotNetTest.Tests
+namespace SeleniumDotNetTest.Tests.Others
 {
 
     //[Collection("Chrome Driver")]

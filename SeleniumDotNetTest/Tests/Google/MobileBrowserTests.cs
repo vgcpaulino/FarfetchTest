@@ -7,7 +7,7 @@ using SeleniumTests.Drivers;
 using System;
 using Xunit;
 
-namespace SeleniumDotNetTest.Tests
+namespace SeleniumDotNetTest.Tests.Google
 {
     public class MobileBrowserTests : IDisposable
     {
